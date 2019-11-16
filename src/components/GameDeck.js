@@ -1,7 +1,7 @@
 import React from 'react'
 
 
-class Calculator extends React.Component {
+class GameDeck extends React.Component {
 
   render() {
     return (
@@ -18,4 +18,4 @@ class Calculator extends React.Component {
   }
 }
 
-export default Calculator
+export default GameDeck
