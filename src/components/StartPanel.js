@@ -10,36 +10,10 @@ class StartPanel extends React.Component {
   constructor() {
     super()
     this.state = {
-      // playerChoice: 'Player choice',
-      // computerChoice: 'Computer choice',
-      // result: 'Choose your weapon!',
       supes: [],
       playerCharacters: [],
       compCharacters: []
-      // playerFighter: {
-      //   name: 'Your fighter',
-      //   biography: {
-      //     alignment: 'neutral'
-      //   },
-      //   images: {
-      //     md: 'images/fighter-icon-24.jpg'
-      //   }
-      // },
-      // compFighter: {
-      //   name: 'Opponent',
-      //   biography: {
-      //     alignment: 'neutral'
-      //   },
-      //   images: {
-      //     md: 'images/boxe-512.png'
-      //   }
-      // },
-      // playerMantle: [],
-      //   compMantle: []
     }
-    // this.iChooseYou = this.iChooseYou.bind(this)
-    // this.doOver = this.doOver.bind(this)
-    // this.whatsYourPath = this.whatsYourPath.bind(this)
   }
 
   componentDidMount() {
@@ -67,9 +41,6 @@ class StartPanel extends React.Component {
       playerCharacters: playableCharacters,
       compCharacters: otherCharacters
     })
-    // setTimeout(function () {
-    //   this.penaltyTaker()
-    // }.bind(this), 2000)
   }
 
 
@@ -79,14 +50,17 @@ class StartPanel extends React.Component {
         <h1>Hero-Villain Combat</h1>
         <button onClick={(e) => this.whatsYourPath(e.target.value)} value='heroes'>Light-Side</button>
         <button onClick={(e) => this.whatsYourPath(e.target.value)} value='villains'>Dark-Side</button>
-        <Link className='test-item' to={{
-          pathname: '/game',
-          state: {
-            playerCharacters: this.state.playerCharacters,
-            compCharacters: this.state.compCharacters
-          }
-        }} >Test Link</Link>
+        <Link className='test-item'
+          to={{
+            pathname: '/game',
+            state: {
+              playerCharacters: this.state.playerCharacters,
+              compCharacters: this.state.compCharacters
+            }
+          }} 
+        >Test Link</Link>
       </div>
+      
     )
   }
 }

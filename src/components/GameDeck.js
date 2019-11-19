@@ -16,9 +16,8 @@ class GameDeck extends React.Component {
       playerChoice: 'Player choice',
       computerChoice: 'Computer choice',
       result: 'Choose your weapon!',
-      // supes: [],
-      // playerCharacters: this.props.playerCharacters,
-      // compCharacters: this.props.compCharacters,
+      playerCharacters: [],
+      compCharacters: [],
       playerFighter: {
         name: 'Your fighter',
         biography: {
@@ -40,20 +39,23 @@ class GameDeck extends React.Component {
       playerMantle: [],
       compMantle: []
     }
-    // this.iChooseYou = this.iChooseYou.bind(this)
-    // this.doOver = this.doOver.bind(this)
-    // this.whatsYourPath = this.whatsYourPath.bind(this)
   }
 
   componentDidMount() {
-    const { playerCharacters } = this.props.location.state
-    const { compCharacters } = this.props.location.state
+    playableCharacters = this.props.location.state.playerCharacters
+    otherCharacters = this.props.location.state.compCharacters
+    this.setState({
+      playerCharacters: playableCharacters,
+      compCharacters: otherCharacters,
+      playerFighter: playableCharacters[Math.floor(Math.random() * playableCharacters.length)],
+      compFighter: otherCharacters[Math.floor(Math.random() * otherCharacters.length)]
+    })
   }
 
   penaltyTaker() {
     this.setState({
-      playerFighter: this.playerCharacters[Math.floor(Math.random() * this.playerCharacters.length)],
-      compFighter: this.compCharacters[Math.floor(Math.random() * this.compCharacters.length)]
+      playerFighter: playableCharacters[Math.floor(Math.random() * playableCharacters.length)],
+      compFighter: otherCharacters[Math.floor(Math.random() * otherCharacters.length)]
     })
     playableCharacters = this.state.playerCharacters.filter((fighters) => {
       return fighters.name !== this.state.playerFighter.name
@@ -62,8 +64,6 @@ class GameDeck extends React.Component {
       return fighters.name !== this.state.compFighter.name
     })
     this.setState({
-      // playerPanel,
-      // compPanel,
       playerCharacters: playableCharacters,
       compCharacters: otherCharacters
     })
@@ -73,13 +73,11 @@ class GameDeck extends React.Component {
     playerMantle = playerWinners.map((winner, i) => {
       return (<div key={i}>
         <img src={winner.images.xs}></img>
-        {/* <p>{`Score ${this.state.playerMantle.length}`}</p> */}
       </div>)
     })
     compMantle = compWinners.map((winner, i) => {
       return (<div key={i}>
         <img src={winner.images.xs}></img>
-        {/* <p>{`Score ${this.state.compMantle.length}`}</p> */}
       </div>)
     })
     this.setState({
@@ -111,8 +109,6 @@ class GameDeck extends React.Component {
         return fighters.name !== this.state.compFighter.name
       })
       this.setState({
-        // playerPanel,
-        // compPanel,
         playerCharacters: playableCharacters,
         compCharacters: otherCharacters
       })
@@ -176,7 +172,7 @@ class GameDeck extends React.Component {
 
 
   render() {
-    console.log(this.props.playerCharacters)
+    console.log(playableCharacters)
     return (<div className='main-deck'>
       <div>
         <h1>{this.state.playerFighter.name}</h1>
@@ -210,17 +206,3 @@ class GameDeck extends React.Component {
 }
 
 export default GameDeck
-
-// pName={this.state.playerFighter.name}
-// pSide={this.state.playerFighter.biography.alignment}
-// pImage={this.state.playerFighter.images.md}
-// pChoice={this.state.playerChoice}
-// cChoice={this.state.computerChoice}
-// result={this.state.result}
-// iChooseYou={this.iChooseYou}
-// doOver={this.doOver}
-// cName={this.state.compFighter.name}
-// cSide={this.state.compFighter.biography.alignment}
-// cImage={this.state.compFighter.images.md}
-// pTrophyCab={this.state.playerMantle}
-// cTrophyCab={this.state.compMantle}
