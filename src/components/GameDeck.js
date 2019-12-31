@@ -1,5 +1,7 @@
 import React from 'react'
 
+import '../style.scss'
+
 let playableCharacters = []
 let otherCharacters = []
 let playerWinners = []
@@ -173,34 +175,52 @@ class GameDeck extends React.Component {
 
   render() {
     console.log(playableCharacters)
-    return (<div className='main-deck'>
-      <div>
-        <h1>{this.state.playerFighter.name}</h1>
-        <div className={`player-image ${this.state.playerFighter.biography.alignment}`}>
-          <img src={this.state.playerFighter.images.md} height='300px' width='300px'></img>
+    return (<div className='main-deck columns'>
+      <div className="column">
+        <div className="scoring">
+          <div>
+            <div className="play-score">
+              {this.state.playerMantle.map((member, i) => {
+                return (<div key={i}>{member}</div>)
+              })}
+            </div>
+            <p>{`Player Score ${this.state.playerMantle.length}`}</p>
+          </div>
+          <div>
+            <div className="comp-score">
+              {this.state.compMantle.map((member, i) => {
+                return (<div key={i}>{member}</div>)
+              })}
+            </div>
+            <p>{`Opponent Score ${this.state.compMantle.length}`}</p>
+          </div>
         </div>
-        <div className={`player-info ${this.state.playerFighter.biography.alignment}`}>Some Info</div>
-      </div>
-      <div>
-        <p>Player 1 chose: <span>{this.state.playerChoice}</span></p>
-        <p>Player 2 chose: <span>{this.state.computerChoice}</span></p>
-        <p className={'result'}>{this.state.result}</p>
-        <button onClick={(e) => this.iChooseYou(e.target.innerHTML)}>rock</button>
-        <button onClick={(e) => this.iChooseYou(e.target.innerHTML)}>paper</button>
-        <button onClick={(e) => this.iChooseYou(e.target.innerHTML)}>scissors</button>
-        <button onClick={() => this.doOver()}>reset</button>
-      </div>
-      <div>
-        <h1>{this.state.compFighter.name}</h1>
-        <div className={`player-image ${this.state.compFighter.biography.alignment}`}>
-          <img src={this.state.compFighter.images.md} height='300px' width='300px'></img>
+        <div className="columns">
+          <div className="column">
+            <h1>{this.state.playerFighter.name}</h1>
+            <div className={`player-image ${this.state.playerFighter.biography.alignment}`}>
+              <img src={this.state.playerFighter.images.md} height='300px' width='300px'></img>
+            </div>
+            <div className={`player-info ${this.state.playerFighter.biography.alignment}`}>Some Info</div>
+          </div>
+          <div className="column">
+            <p>Player 1 chose: <span>{this.state.playerChoice}</span></p>
+            <p>Player 2 chose: <span>{this.state.computerChoice}</span></p>
+            <p className={'result'}>{this.state.result}</p>
+            <button onClick={(e) => this.iChooseYou(e.target.innerHTML)}>rock</button>
+            <button onClick={(e) => this.iChooseYou(e.target.innerHTML)}>paper</button>
+            <button onClick={(e) => this.iChooseYou(e.target.innerHTML)}>scissors</button>
+            <button onClick={() => this.doOver()}>reset</button>
+          </div>
+          <div className="column">
+            <h1>{this.state.compFighter.name}</h1>
+            <div className={`player-image ${this.state.compFighter.biography.alignment}`}>
+              <img src={this.state.compFighter.images.md} height='300px' width='300px'></img>
+            </div>
+            <div className={`player-info ${this.state.compFighter.biography.alignment}`}>Some Info</div>
+          </div>
         </div>
-        <div className={`player-info ${this.state.compFighter.biography.alignment}`}>Some Info</div>
       </div>
-      {this.state.playerMantle}
-      <p>{`Player Score ${this.state.playerMantle.length}`}</p>
-      {this.state.compMantle}
-      <p>{`Opponent Score ${this.state.compMantle.length}`}</p>
     </div>)
   }
 }

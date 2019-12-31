@@ -1,1 +1,10 @@
+.scoring {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
 
+.play-score, .comp-score {
+  display: flex;
+  flex-direction: row;
+}
