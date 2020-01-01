@@ -6,5 +6,19 @@
 
 .play-score, .comp-score {
   display: flex;
-  flex-direction: row;
+  flex-flow: row wrap;
+}
+
+.winners {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+}
+
+.game-buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
 }

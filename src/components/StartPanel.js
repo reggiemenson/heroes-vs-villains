@@ -51,7 +51,7 @@ class StartPanel extends React.Component {
       <section className="hero is-success is-fullheight">
         <div className="hero-body">
           <div className="container has-text-centered">
-            <h1 className="title">Hero-Villain Combat</h1>
+            <h1 className="title">Heroes VS Villains</h1>
             <button className="button" onClick={(e) => this.whatsYourPath(e.target.value)} value='heroes'>Light-Side</button>
             <button className="button" onClick={(e) => this.whatsYourPath(e.target.value)} value='villains'>Dark-Side</button>
             <div>

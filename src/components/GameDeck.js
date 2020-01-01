@@ -4,10 +4,13 @@ import '../style.scss'
 
 let playableCharacters = []
 let otherCharacters = []
-let playerWinners = []
+let capturedOpponents = []
 let playerMantle = []
-let compWinners = []
+let capturedPlayers = []
 let compMantle = []
+let winsInRow = 0
+let playerWinners = []
+let winnerVariable = []
 
 
 class GameDeck extends React.Component {
@@ -15,6 +18,9 @@ class GameDeck extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
+      playersTeam: [],
+      compsTeam: [],
+      playerWinners: [],
       playerChoice: 'Player choice',
       computerChoice: 'Computer choice',
       result: 'Choose your weapon!',
@@ -49,6 +55,8 @@ class GameDeck extends React.Component {
     this.setState({
       playerCharacters: playableCharacters,
       compCharacters: otherCharacters,
+      playersTeam: playableCharacters,
+      compsTeam: otherCharacters,
       playerFighter: playableCharacters[Math.floor(Math.random() * playableCharacters.length)],
       compFighter: otherCharacters[Math.floor(Math.random() * otherCharacters.length)]
     })
@@ -72,30 +80,68 @@ class GameDeck extends React.Component {
   }
 
   smirkGang() {
-    playerMantle = playerWinners.map((winner, i) => {
+    playerMantle = capturedOpponents.map((winner, i) => {
       return (<div key={i}>
         <img src={winner.images.xs}></img>
       </div>)
     })
-    compMantle = compWinners.map((winner, i) => {
+    compMantle = capturedPlayers.map((winner, i) => {
       return (<div key={i}>
         <img src={winner.images.xs}></img>
+      </div>)
+    })
+    playerWinners = winnerVariable.map((rowWinner, i) => {
+      return (<div key={i}>
+        <img src={rowWinner.images.xs}></img>
       </div>)
     })
     this.setState({
       playerMantle,
-      compMantle
+      compMantle,
+      playerWinners
     })
   }
 
   and1() {
-    playerWinners.push(this.state.playerFighter)
+    capturedOpponents.push(this.state.compFighter)
+    setTimeout(function () {
+      this.setState({
+        compFighter: otherCharacters[Math.floor(Math.random() * otherCharacters.length)]
+      })
+      otherCharacters = this.state.compCharacters.filter((fighters) => {
+        return fighters.name !== this.state.compFighter.name
+      })
+      this.setState({
+        compCharacters: otherCharacters
+      })
+      // console.log('running')
+    }.bind(this), 1000)
   }
 
-
-
   damn() {
-    compWinners.push(this.state.compFighter)
+    capturedPlayers.push(this.state.playerFighter)
+    setTimeout(function () {
+      this.setState({
+        playerFighter: playableCharacters[Math.floor(Math.random() * playableCharacters.length)]
+      })
+      playableCharacters = this.state.playerCharacters.filter((fighters) => {
+        return fighters.name !== this.state.playerFighter.name
+      })
+      this.setState({
+        playerCharacters: playableCharacters
+      })
+      // console.log('running')
+    }.bind(this), 1000)
+  }
+
+  listWinners() {
+    winnerVariable.push(this.state.playerFighter)
+    playerWinners = winnerVariable.map((rowWinner, i) => {
+      return (
+        <img key={i} src={rowWinner.images.xs}></img>
+      )
+    })
+
   }
 
   whosNext() {
@@ -114,7 +160,7 @@ class GameDeck extends React.Component {
         playerCharacters: playableCharacters,
         compCharacters: otherCharacters
       })
-      console.log('running')
+      // console.log('running')
     }.bind(this), 1000)
   }
 
@@ -127,16 +173,23 @@ class GameDeck extends React.Component {
       this.whatYouGot()
       result = this.whoWins()
       if (result === 'You win!') {
+        winsInRow += 1
         this.and1()
-        this.whosNext()
+        // this.whosNext()
         //if there's a winner pop it from playable characters and regenerate main for both players
       } else if (result === 'You lose!') {
-        this.damn()
-        this.whosNext()
+        if (winsInRow > 0) {
+          this.listWinners(winsInRow)
+          this.damn()
+          winsInRow = 0
+        } else {
+          this.damn()
+        }
+        // this.whosNext()
         //if there's a loser pop it from playable characters and regenerate main for both players
       }
       this.smirkGang()
-      console.log(this.state.playerCharacters)
+      // console.log(this.state.playerCharacters)
       this.setState({
         result
       })
@@ -174,8 +227,8 @@ class GameDeck extends React.Component {
 
 
   render() {
-    console.log(playableCharacters)
     return (<div className='main-deck columns'>
+      {console.log(this.state.playerWinners)}
       <div className="column">
         <div className="scoring">
           <div>
@@ -203,14 +256,18 @@ class GameDeck extends React.Component {
             </div>
             <div className={`player-info ${this.state.playerFighter.biography.alignment}`}>Some Info</div>
           </div>
-          <div className="column">
-            <p>Player 1 chose: <span>{this.state.playerChoice}</span></p>
-            <p>Player 2 chose: <span>{this.state.computerChoice}</span></p>
-            <p className={'result'}>{this.state.result}</p>
-            <button onClick={(e) => this.iChooseYou(e.target.innerHTML)}>rock</button>
-            <button onClick={(e) => this.iChooseYou(e.target.innerHTML)}>paper</button>
-            <button onClick={(e) => this.iChooseYou(e.target.innerHTML)}>scissors</button>
-            <button onClick={() => this.doOver()}>reset</button>
+          <div className="column game-panel">
+            <div className="game-buttons">
+              <div>
+                <p>Player 1 chose: <span>{this.state.playerChoice}</span></p>
+                <p>Player 2 chose: <span>{this.state.computerChoice}</span></p>
+                <p className={'result'}>{this.state.result}</p>
+                <button onClick={(e) => this.iChooseYou(e.target.innerHTML)}>rock</button>
+                <button onClick={(e) => this.iChooseYou(e.target.innerHTML)}>paper</button>
+                <button onClick={(e) => this.iChooseYou(e.target.innerHTML)}>scissors</button>
+                <button onClick={() => this.doOver()}>reset</button>
+              </div>
+            </div>
           </div>
           <div className="column">
             <h1>{this.state.compFighter.name}</h1>
@@ -218,6 +275,13 @@ class GameDeck extends React.Component {
               <img src={this.state.compFighter.images.md} height='300px' width='300px'></img>
             </div>
             <div className={`player-info ${this.state.compFighter.biography.alignment}`}>Some Info</div>
+          </div>
+        </div>
+        <div className="column">
+          <div className="winners">
+            {this.state.playerWinners.map((member, i) => {
+              return (<div className="winners" key={i}>{member}</div>)
+            })}
           </div>
         </div>
       </div>
