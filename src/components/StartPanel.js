@@ -48,10 +48,10 @@ class StartPanel extends React.Component {
 
   render() {
     return (
-      <section className="hero is-success is-fullheight">
+      <section className="hero is-fullheight" id="main-hero">
         <div className="hero-body">
           <div className="container has-text-centered">
-            <h1 className="title">Heroes VS Villains</h1>
+            <h1 className="title main-title">Heroes VS Villains</h1>
             <button className="button" onClick={(e) => this.whatsYourPath(e.target.value)} value='heroes'>Light-Side</button>
             <button className="button" onClick={(e) => this.whatsYourPath(e.target.value)} value='villains'>Dark-Side</button>
             <div>

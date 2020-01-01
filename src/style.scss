@@ -1,3 +1,19 @@
+@import url('https://fonts.googleapis.com/css?family=Anton|Girassol|Josefin+Sans|Special+Elite&display=swap');
+
+// font-family: 'Girassol', cursive;
+// font-family: 'Anton', sans-serif;
+// font-family: 'Josefin Sans', sans-serif;
+// font-family: 'Special Elite', cursive;
+
+.button {
+  margin: 20px;
+}
+
+h1.title {
+  font-family: 'Anton', sans-serif;
+  font-size: 4rem;
+}
+
 .scoring {
   display: flex;
   flex-direction: row;
@@ -21,4 +37,11 @@
   justify-content: center;
   align-items: center;
   height: 100%;
+}
+
+#main-hero {
+  background-image: linear-gradient(rgba(245,245,245,0.5), rgba(245,245,245,0.5)), url('https://artfiles.alphacoders.com/894/89493.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+   
 }
