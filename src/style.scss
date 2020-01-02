@@ -9,7 +9,9 @@
   margin: 20px;
 }
 
-h1.title {
+div.title {
+  display: flex;
+  justify-content: center;
   font-family: 'Anton', sans-serif;
   font-size: 4rem;
 }
@@ -43,5 +45,70 @@ h1.title {
   background-image: linear-gradient(rgba(245,245,245,0.5), rgba(245,245,245,0.5)), url('https://artfiles.alphacoders.com/894/89493.jpg');
   background-size: cover;
   background-repeat: no-repeat;
-   
 }
+
+.fade-in {
+  animation: fadein 3s;
+}
+
+@keyframes fadein {
+  0% { background-image: url('https://artfiles.alphacoders.com/894/89493.jpg'); opacity: 1; }
+  33% { background-image: url('https://artfiles.alphacoders.com/894/89493.jpg'); opacity: 1; }
+  100% { background-image: url('https://artfiles.alphacoders.com/894/89493.jpg'); opacity: 0.5; }
+}
+
+.versus {
+  padding: 0 0.8rem;
+}
+
+.move-hero {
+  animation: move-right 3s normal;
+  animation-delay: 3s;
+  // transform: translate()
+}
+
+@keyframes move-right {
+
+  0% {
+    transform: translate(-100%);
+  }
+
+  // 33% {
+  //   transform: translate(0, 200px)
+  // }
+
+  20% {
+    transform: translate(-5%);
+  }
+
+  100% {
+    transform: translate(0%);
+  }
+}
+
+.move-villain {
+  animation: move-left 3s normal;
+  animation-delay: 3s;
+  // transform: translate()
+}
+
+@keyframes move-left {
+
+  0% {
+    transform: translate(100%);
+  }
+
+  // 33% {
+  //   transform: translate(0, 200px)
+  // }
+
+  20% {
+    transform: translate(5%);
+  }
+
+  100% {
+    transform: translate(0%);
+  }
+}
+
+// background-image: linear-gradient(rgba(245,245,245,0.5), rgba(245,245,245,0.5)), url('https://artfiles.alphacoders.com/894/89493.jpg');

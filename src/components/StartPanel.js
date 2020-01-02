@@ -48,10 +48,10 @@ class StartPanel extends React.Component {
 
   render() {
     return (
-      <section className="hero is-fullheight" id="main-hero">
+      <section className="hero is-fullheight fade-in" id="main-hero">
         <div className="hero-body">
           <div className="container has-text-centered">
-            <h1 className="title main-title">Heroes VS Villains</h1>
+            <div className="title main-title"> <div className="move-hero">Heroes</div><div className="versus">VS</div><div className="move-villain">Villains</div></div>
             <button className="button" onClick={(e) => this.whatsYourPath(e.target.value)} value='heroes'>Light-Side</button>
             <button className="button" onClick={(e) => this.whatsYourPath(e.target.value)} value='villains'>Dark-Side</button>
             <div>
