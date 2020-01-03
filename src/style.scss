@@ -5,15 +5,55 @@
 // font-family: 'Josefin Sans', sans-serif;
 // font-family: 'Special Elite', cursive;
 
+//style--------------------//
+
 .button {
   margin: 20px;
+  font-family: 'Girassol', cursive;
 }
+
+.light:hover {
+  background-image: url('https://media.giphy.com/media/RHlUAl8WtCyHK/giphy.gif');
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.dark:hover {
+  background-image: url('https://thumbs.gfycat.com/HighBoringIndianglassfish-small.gif');
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.opening-text {
+  font-family: 'Special Elite', cursive;
+  font-weight: bold;
+  font-size: 1.5em;
+}
+
+div.title {
+  font-family: 'Anton', sans-serif;
+  font-size: 5rem;
+}
+
+div.versus {
+  font-size: 6rem;
+}
+
+#main-hero {
+  background-image: linear-gradient(rgba(245,245,245,0.5), rgba(245,245,245,0.5)), url('https://artfiles.alphacoders.com/894/89493.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.versus {
+  padding: 0 0.8rem;
+}
+
+//flex---------------------//
 
 div.title {
   display: flex;
   justify-content: center;
-  font-family: 'Anton', sans-serif;
-  font-size: 4rem;
 }
 
 .scoring {
@@ -41,11 +81,7 @@ div.title {
   height: 100%;
 }
 
-#main-hero {
-  background-image: linear-gradient(rgba(245,245,245,0.5), rgba(245,245,245,0.5)), url('https://artfiles.alphacoders.com/894/89493.jpg');
-  background-size: cover;
-  background-repeat: no-repeat;
-}
+//animation------------------//
 
 .fade-in {
   animation: fadein 3s;
@@ -57,14 +93,21 @@ div.title {
   100% { background-image: url('https://artfiles.alphacoders.com/894/89493.jpg'); opacity: 0.5; }
 }
 
-.versus {
-  padding: 0 0.8rem;
+.main-title, .start-game {
+  animation: appear 3s normal;
+}
+
+@keyframes appear {
+  to {
+      width:0;
+      height:0;
+      overflow:hidden;
+  }
 }
 
 .move-hero {
   animation: move-right 3s normal;
   animation-delay: 3s;
-  // transform: translate()
 }
 
 @keyframes move-right {
@@ -72,10 +115,6 @@ div.title {
   0% {
     transform: translate(-100%);
   }
-
-  // 33% {
-  //   transform: translate(0, 200px)
-  // }
 
   20% {
     transform: translate(-5%);
@@ -89,7 +128,6 @@ div.title {
 .move-villain {
   animation: move-left 3s normal;
   animation-delay: 3s;
-  // transform: translate()
 }
 
 @keyframes move-left {
@@ -97,10 +135,6 @@ div.title {
   0% {
     transform: translate(100%);
   }
-
-  // 33% {
-  //   transform: translate(0, 200px)
-  // }
 
   20% {
     transform: translate(5%);
@@ -110,5 +144,3 @@ div.title {
     transform: translate(0%);
   }
 }
-
-// background-image: linear-gradient(rgba(245,245,245,0.5), rgba(245,245,245,0.5)), url('https://artfiles.alphacoders.com/894/89493.jpg');

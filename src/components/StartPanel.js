@@ -52,18 +52,20 @@ class StartPanel extends React.Component {
         <div className="hero-body">
           <div className="container has-text-centered">
             <div className="title main-title"> <div className="move-hero">Heroes</div><div className="versus">VS</div><div className="move-villain">Villains</div></div>
-            <button className="button" onClick={(e) => this.whatsYourPath(e.target.value)} value='heroes'>Light-Side</button>
-            <button className="button" onClick={(e) => this.whatsYourPath(e.target.value)} value='villains'>Dark-Side</button>
-            <div>
-              {this.state.playerCharacters[0] ? <Link className='test-item'
-                to={{
-                  pathname: '/game',
-                  state: {
-                    playerCharacters: this.state.playerCharacters,
-                    compCharacters: this.state.compCharacters
-                  }
-                }}
-              >Test Link</Link> : 'What\'s your choice?'}
+            <div className="start-game">
+              <button className="button light" onClick={(e) => this.whatsYourPath(e.target.value)} value='heroes'>Light-Side</button>
+              <button className="button dark" onClick={(e) => this.whatsYourPath(e.target.value)} value='villains'>Dark-Side</button>
+              <div>
+                {this.state.playerCharacters[0] ? <Link className="opening-text"
+                  to={{
+                    pathname: '/game',
+                    state: {
+                      playerCharacters: this.state.playerCharacters,
+                      compCharacters: this.state.compCharacters
+                    }
+                  }}
+                >Test Link</Link> : <div className="opening-text">What's your choice?</div>}
+              </div>
             </div>
           </div>
         </div>
