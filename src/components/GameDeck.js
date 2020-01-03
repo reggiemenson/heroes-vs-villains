@@ -11,6 +11,7 @@ let compMantle = []
 let winsInRow = 0
 let playerWinners = []
 let winnerVariable = []
+let record = []
 
 
 class GameDeck extends React.Component {
@@ -90,15 +91,15 @@ class GameDeck extends React.Component {
         <img src={winner.images.xs}></img>
       </div>)
     })
-    playerWinners = winnerVariable.map((rowWinner, i) => {
-      return (<div key={i}>
-        <img src={rowWinner.images.xs}></img>
-      </div>)
-    })
+    // playerWinners = winnerVariable.map((rowWinner, i) => {
+    //   return (<div key={i}>
+    //     <img src={rowWinner.images.xs}></img>
+    //   </div>)
+    // })
     this.setState({
       playerMantle,
-      compMantle,
-      playerWinners
+      compMantle
+      // playerWinners
     })
   }
 
@@ -134,12 +135,23 @@ class GameDeck extends React.Component {
     }.bind(this), 1000)
   }
 
-  listWinners() {
+  listWinners(winsInRow) {
+    record.push(winsInRow)
     winnerVariable.push(this.state.playerFighter)
     playerWinners = winnerVariable.map((rowWinner, i) => {
-      return (
-        <img key={i} src={rowWinner.images.xs}></img>
-      )
+      return (<div key={i}>
+        <header className="card-header">
+          <p className="record-wins">Wins: {record[i]}</p>
+        </header>
+        <div className="card-image">
+          <figure className="image is-4by4">
+            <img src={rowWinner.images.xs}></img>
+          </figure>
+        </div>
+      </div>)
+    })
+    this.setState({
+      playerWinners
     })
 
   }
@@ -227,41 +239,43 @@ class GameDeck extends React.Component {
 
 
   render() {
-    return (<div className='main-deck columns'>
+    return (<div className={`main-deck columns ${this.state.playerFighter.biography.alignment}`}>
       {console.log(this.state.playerWinners)}
       <div className="column">
         <div className="scoring">
           <div>
+            <p>{`Player Score ${this.state.playerMantle.length}`}</p>
             <div className="play-score">
               {this.state.playerMantle.map((member, i) => {
                 return (<div key={i}>{member}</div>)
               })}
             </div>
-            <p>{`Player Score ${this.state.playerMantle.length}`}</p>
           </div>
           <div>
+            <p>{`Opponent Score ${this.state.compMantle.length}`}</p>
             <div className="comp-score">
               {this.state.compMantle.map((member, i) => {
                 return (<div key={i}>{member}</div>)
               })}
             </div>
-            <p>{`Opponent Score ${this.state.compMantle.length}`}</p>
           </div>
         </div>
         <div className="columns">
-          <div className="column">
-            <h1>{this.state.playerFighter.name}</h1>
-            <div className={`player-image ${this.state.playerFighter.biography.alignment}`}>
-              <img src={this.state.playerFighter.images.md} height='300px' width='300px'></img>
+          <div className="column panels">
+            <div className="container is-fluid">
+              <h1>{this.state.playerFighter.name}</h1>
+              <div className="player-image">
+                <img src={this.state.playerFighter.images.md} height='300px' width='300px'></img>
+              </div>
+              <div className='player-info'>Some Info</div>
             </div>
-            <div className={`player-info ${this.state.playerFighter.biography.alignment}`}>Some Info</div>
           </div>
           <div className="column game-panel">
-            <div className="game-buttons">
+            <div className="container is-fluid game-buttons">
               <div>
                 <p>Player 1 chose: <span>{this.state.playerChoice}</span></p>
-                <p>Player 2 chose: <span>{this.state.computerChoice}</span></p>
                 <p className={'result'}>{this.state.result}</p>
+                <p>Player 2 chose: <span>{this.state.computerChoice}</span></p>
                 <button onClick={(e) => this.iChooseYou(e.target.innerHTML)}>rock</button>
                 <button onClick={(e) => this.iChooseYou(e.target.innerHTML)}>paper</button>
                 <button onClick={(e) => this.iChooseYou(e.target.innerHTML)}>scissors</button>
@@ -269,18 +283,20 @@ class GameDeck extends React.Component {
               </div>
             </div>
           </div>
-          <div className="column">
-            <h1>{this.state.compFighter.name}</h1>
-            <div className={`player-image ${this.state.compFighter.biography.alignment}`}>
-              <img src={this.state.compFighter.images.md} height='300px' width='300px'></img>
+          <div className="column panels">
+            <div className="container is-fluid">
+              <h1>{this.state.compFighter.name}</h1>
+              <div className='computer-image'>
+                <img src={this.state.compFighter.images.md} height='300px' width='300px'></img>
+              </div>
+              <div className='computer-info'>Some Info</div>
             </div>
-            <div className={`player-info ${this.state.compFighter.biography.alignment}`}>Some Info</div>
           </div>
         </div>
         <div className="column">
           <div className="winners">
             {this.state.playerWinners.map((member, i) => {
-              return (<div className="winners" key={i}>{member}</div>)
+              return (<div key={i} className="winners card">{member}</div>)
             })}
           </div>
         </div>
