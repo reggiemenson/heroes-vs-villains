@@ -144,7 +144,7 @@ class GameDeck extends React.Component {
           <p className="record-wins">Wins: {record[i]}</p>
         </header>
         <div className="card-image">
-          <figure className="image is-4by4">
+          <figure className="image">
             <img src={rowWinner.images.xs}></img>
           </figure>
         </div>
