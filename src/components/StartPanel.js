@@ -14,14 +14,20 @@ class StartPanel extends React.Component {
     this.state = {
       supes: [],
       playerCharacters: [],
-      compCharacters: []
+      compCharacters: [],
+      loaded: false
     }
   }
 
   componentDidMount() {
     fetch('https://akabab.github.io/superhero-api/api/all.json')
       .then(resp => resp.json())
-      .then(resp => this.setState({ supes: resp }))
+      .then(resp => {
+        this.setState({ supes: resp })
+        setTimeout(() => {
+          this.setState({ loaded: true })
+        }, 3000)
+      })
   }
 
   selfAbsorbedRating(shade) {
@@ -50,7 +56,7 @@ class StartPanel extends React.Component {
     return (
       <section className="hero is-fullheight fade-in" id="main-hero">
         <div className="hero-body">
-          <div className="container has-text-centered">
+          {this.state.loaded && <div className="container has-text-centered">
             <div className="title main-title"> <div className="move-hero">Heroes</div><div className="versus">VS</div><div className="move-villain">Villains</div></div>
             <div className="start-game">
               <button className="button light" onClick={(e) => this.whatsYourPath(e.target.value)} value='heroes'>Light-Side</button>
@@ -64,10 +70,10 @@ class StartPanel extends React.Component {
                       compCharacters: this.state.compCharacters
                     }
                   }}
-                >Test Link</Link> : <div className="opening-text">What's your choice?</div>}
+                >Begin</Link> : <div className="opening-text">What's your choice?</div>}
               </div>
             </div>
-          </div>
+          </div>}
         </div>
       </section>
 

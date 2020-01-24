@@ -263,33 +263,37 @@ class GameDeck extends React.Component {
         <div className="columns">
           <div className="column panels">
             <div className="container is-fluid">
-              <h1>{this.state.playerFighter.name}</h1>
+              <h1 className="name">{this.state.playerFighter.name}</h1>
               <div className="player-image">
                 <img src={this.state.playerFighter.images.md} height='300px' width='300px'></img>
               </div>
-              <div className='player-info'>Some Info</div>
             </div>
           </div>
           <div className="column game-panel">
             <div className="container is-fluid game-buttons">
-              <div>
+              <div className="display">
                 <p>Player 1 chose: <span>{this.state.playerChoice}</span></p>
                 <p className={'result'}>{this.state.result}</p>
                 <p>Player 2 chose: <span>{this.state.computerChoice}</span></p>
-                <button onClick={(e) => this.iChooseYou(e.target.innerHTML)}>rock</button>
-                <button onClick={(e) => this.iChooseYou(e.target.innerHTML)}>paper</button>
-                <button onClick={(e) => this.iChooseYou(e.target.innerHTML)}>scissors</button>
-                <button onClick={() => this.doOver()}>reset</button>
+                <div className="buttons are-small is-centered">
+                  <div className="field is-grouped">
+                    <button className="button" onClick={(e) => this.iChooseYou(e.target.innerHTML)}>rock</button>
+                    <button className="button" onClick={(e) => this.iChooseYou(e.target.innerHTML)}>paper</button>
+                    <button className="button" onClick={(e) => this.iChooseYou(e.target.innerHTML)}>scissors</button>
+                  </div>
+                </div>
+                <div className="buttons are-small is-centered" >
+                  <button className="button" id="reset" onClick={() => this.doOver()}>reset</button>
+                </div>
               </div>
             </div>
           </div>
           <div className="column panels">
             <div className="container is-fluid">
-              <h1>{this.state.compFighter.name}</h1>
+              <h1 className="name">{this.state.compFighter.name}</h1>
               <div className='computer-image'>
                 <img src={this.state.compFighter.images.md} height='300px' width='300px'></img>
               </div>
-              <div className='computer-info'>Some Info</div>
             </div>
           </div>
         </div>

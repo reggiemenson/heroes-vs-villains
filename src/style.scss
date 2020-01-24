@@ -7,6 +7,8 @@
 
 //style--------------------//
 
+//---------Landing-Page------------//
+
 .button {
   margin: 20px;
   font-family: 'Girassol', cursive;
@@ -46,6 +48,7 @@ div.versus {
 #root, html, body {
   height: 100%;
   width: 100%;
+  font-family: 'Girassol', cursive;
 }
 
 #main-hero {
@@ -64,6 +67,12 @@ div.versus {
 .scoring {
   min-height: 8rem;
   padding: 1rem;
+  font-size: 1.3rem;
+}
+
+.name {
+  font-size: 1.6rem;
+  font-weight: bold;
 }
 
 div.panels {
@@ -72,6 +81,8 @@ div.panels {
 
 p.result {
   text-align: center;
+  font-size: 1.2rem;
+  color: maroon;
 }
 
 .record-wins {
@@ -89,6 +100,18 @@ p.result {
   background-image: url('https://i.imgur.com/alywoYY.jpg');
   background-size: cover;
   background-repeat: no-repeat; 
+}
+
+.display {
+  background-color: grey;
+  padding: 20px;
+  border-radius: 5px;
+  color: black;
+  // opacity: 0.8;
+}
+
+#reset {
+  margin-top: 0;
 }
 
 //flex---------------------//
@@ -139,21 +162,25 @@ div.title {
   100% { background-image: url('https://artfiles.alphacoders.com/894/89493.jpg'); opacity: 0.5; }
 }
 
-.main-title, .start-game {
-  animation: appear 3s normal;
+div.on-load {
+  display: none;
 }
 
-@keyframes appear {
-  to {
-      width:0;
-      height:0;
-      overflow:hidden;
-  }
-}
+// .main-title, .start-game {
+//   animation: appear 1s normal;
+// }
+
+// @keyframes appear {
+//   to {
+//       width:0;
+//       height:0;
+//       overflow:hidden;
+//   }
+// }
 
 .move-hero {
   animation: move-right 3s normal;
-  animation-delay: 3s;
+  // animation-delay: 3s;
 }
 
 @keyframes move-right {
@@ -173,7 +200,7 @@ div.title {
 
 .move-villain {
   animation: move-left 3s normal;
-  animation-delay: 3s;
+  // animation-delay: 3s;
 }
 
 @keyframes move-left {
