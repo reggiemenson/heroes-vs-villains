@@ -12,8 +12,8 @@ import StartPanel from './components/StartPanel'
 const App = () => (
   <BrowserRouter>
     <Switch>
+      <Route exact path="/heroes-vs-villains/" component={StartPanel} />
       <Route path="/game" component={GameDeck} />
-      <Route exact path="/" component={StartPanel} />
     </Switch>
   </BrowserRouter>
 )
