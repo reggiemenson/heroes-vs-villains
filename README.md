@@ -6,16 +6,18 @@ This was a weekend project designed to make use of some of the technologies we h
 
 We had just been introduced to React.js and shown how to utilise external APIs and so we were encouraged to practice with the creation of an app using any openly available API.
 
-I chose the superhero API and took some inspiration from some of the logic based exercises we had practiced in class to that point.
+I chose the superhero API and took some inspiration from some of the logic-based exercises we had practiced in class to that point.
 
 The result is rock, paper scissors game utilising the superhero APIs range of supercharacter data called Heroes vs Villains.
+
+Check out the project here: [Heroes-Vs-Villains](https://reggiemenson.com/heroes-vs-villains/)
  
 ## Technologies Used
 
 #### Core
 * HTML5
 * CSS3
-* Javascript
+* JavaScript
 * React.js
 
 #### Additional Libraries
@@ -44,7 +46,7 @@ If the player wins the result is displayed on the central panel and the player w
 
 ## Methodology
 
-This project was created after a review of the superhero api. From a look at the data it was clear that there was a wealth of information on each character and it was consistent enough to make some clear divisions between characters.
+This project was created after a review of the superhero API. From a look at the data it was clear that there was a wealth of information on each character and it was consistent enough to make some clear divisions between characters.
 
 Once I was able to divide the characters into two separate groups I started to think about the core logic part of the application.
 
@@ -74,16 +76,16 @@ I filtered based on the selection and then I passed the information on using loc
     otherCharacters = this.props.location.state.compCharacters
     
 ```
-Once there I would push a character forward randomly and then filter them from the full array that was assign after the charaters selection.
+Once there I would push a character forward randomly and then filter them from the full array that was assign after the characters selection.
 
-The logic would then take center stage with the data pushed around on condition of the outcome which was a simply switch case function.
+The logic would then take centre stage with the data pushed around on condition of the outcome which was a simply switch case function.
 
-Wins were tallied with a different variable and on a lose condition this number would be checked. If it was more than 1, a card would be created with the amount of wins.
+Wins were tallied with a different variable and on a lose condition this number would be checked. If it was more than 1, a card would be created with the number of wins.
 
 ![](Readme-images/wins-in-row.png)
 
 
-## Challenges
+### Challenges
 
 The initial logic was eventually reworked as I wanted to provide a better user experience. Initially, there would be a change on each play regardless of the winner and the winner would retain their card while the loser would be discarded. I felt, however, that a new way would improve the user's experience and create a sense of achievement in the capture of cards that aren't their own as well as a desire to collect wins for a desired character.
 
@@ -113,9 +115,16 @@ listWinners(winsInRow) {
 
 ```
 
-This function would ensure that cards were generated with the number of wins by referencing a different array variable. Ultimately, each record collected on a characters run would be able to be displayed at the top of the card.
+This function would ensure that cards were generated with the number of wins by referencing a different array variable. Ultimately, each record collected on a character’s run would be able to be displayed at the top of the card.
 
-### Concluding Thoughts
+### Wins
+
+I was really able to work on the React concepts that we had been given as well as practice some of the ES6 array methods we had previously attempted in class in a practical fashion here. 
+
+I developed a better understanding of props and the location property through the shift in the game views and got to play with the data in accordance to the requirements in the game.
+
+
+## Concluding Thoughts
 
 The timeframe for this project was quite short as it was between official projects so the scope was kept small. We were encouraged to make little additions if possible and so when I could I built it with the technologies that were available at the time of project commencement.
 
